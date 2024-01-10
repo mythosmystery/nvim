@@ -16,7 +16,6 @@ return {
 				f = { "<cmd> Telescope find_files<cr>", "Find File" },
 				g = { "<cmd> Telescope live_grep<cr>", "Grep Project" },
 				s = { "<cmd> Telescope grep_string<cr>", "Grep String" },
-        S = { "<cmd> Telescope grep_string search=\\v<cr>", "Grep String (regex)" },
 			},
 			h = {
 				name = "harpoon",
@@ -70,9 +69,11 @@ return {
 			},
 		}, { prefix = "<leader>" })
 		wk.register({
-			f = {
-				name = "file",
-				s = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+			s = {
+				function()
+					require("telescope.builtin").grep_string({ search = vim.getVisualSelection() })
+				end,
+				"Grep Visual Selection",
 			},
 		}, { prefix = "<leader>", mode = "v" })
 	end,
