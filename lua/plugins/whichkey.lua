@@ -23,6 +23,16 @@ return {
 				c = { "<cmd>lua require('harpoon.mark').clear_all_marks()<cr>", "Clear Marks" },
 				m = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Mark" },
 			},
+      d = {
+        name = "dap",
+        t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+        c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+        s = { "<cmd>lua require('dap').step_over()<cr>", "Step Over" },
+        i = { "<cmd>lua require('dap').step_into()<cr>", "Step Into" },
+        o = { "<cmd>lua require('dap').step_out()<cr>", "Step Out" },
+        r = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle Repl" },
+        x = { "<cmd>lua require('dap').terminate()<cr>", "Terminate" },
+      },
 			b = {
 				name = "buffer",
 				b = { "<cmd>BufferLineCyclePrev<cr>", "Prev" },
