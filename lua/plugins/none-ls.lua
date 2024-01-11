@@ -9,7 +9,7 @@ return {
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.eslint_d.with({
-          extra_filetypes = { "vue", "typescript", }
+          extra_filetypes = { "vue", "typescript" }
         }),
       },
     })

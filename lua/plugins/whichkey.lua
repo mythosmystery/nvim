@@ -39,6 +39,8 @@ return {
 				n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
 				c = { "<cmd>Bdelete<cr>", "Kill" },
 				f = { "<cmd>Telescope buffers previewers=false<cr>", "Find" },
+        p = { "<cmd>BufferLinePick<cr>", "Pick" },
+        x = { "<cmd>BufferLinePickClose<cr>", "Pick and Close" },
 			},
 			c = {
 				name = "code",
