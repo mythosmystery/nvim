@@ -1,6 +1,9 @@
 return {
   {
     "lvimuser/lsp-inlayhints.nvim",
+    config = function()
+      require("lsp-inlayhints").setup()
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -37,7 +40,7 @@ return {
             },
             tools = {
               inlay_hints = {
-                auto = false
+                auto = true
               }
             }
           },
@@ -64,6 +67,7 @@ return {
 
           local bufnr = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
+          require("lsp-inlayhints").show()
           require("lsp-inlayhints").on_attach(client, bufnr)
         end,
       })
@@ -73,8 +77,5 @@ return {
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
     end,
-    opts = {
-      inlay_hints = { enabled = true },
-    },
   },
 }

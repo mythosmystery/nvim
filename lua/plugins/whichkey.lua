@@ -46,6 +46,7 @@ return {
 				name = "code",
 				a = { vim.lsp.buf.code_action, "Code Actions" },
 				f = { vim.lsp.buf.format, "Format File" },
+        h = { require("lsp-inlayhints").toggle, "Toggle Inlay Hints" },
 			},
 			[" "] = { "<cmd> Telescope find_files<cr>", "Search" },
 			s = {
