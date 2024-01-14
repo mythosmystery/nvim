@@ -51,11 +51,17 @@ return {
       [" "] = { "<cmd> Telescope find_files<cr>", "Search" },
       t = {
         name = "Terminal",
-        n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },          -- NodeJS Terminal
-        p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },      -- Python Terminal
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" }, -- Floating Terminal
+        n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },                        -- NodeJS Terminal
+        p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },                    -- Python Terminal
+        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },               -- Floating Terminal
         h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" }, -- Horizontal Terminal,
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },    -- Vertical Terminal
+        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" }, -- Vertical Terminal
+      },
+      u = {
+        name = "undo tree",
+        u = { "<cmd>UndotreeToggle<cr>", "Toggle" },
+        s = { "<cmd>UndotreeShowDiff<cr>", "Show Diff" },
+        c = { "<cmd>UndotreeClear<cr>", "Clear" },
       },
       s = {
         name = "Search",
@@ -91,7 +97,7 @@ return {
       D = {
         name = "database",
         m = { "<cmd>lua require('mongo-nvim.telescope.pickers').database_picker()<cr>", "Mongo" },
-      }
+      },
     }, { prefix = "<leader>" })
     wk.register({
       s = {

@@ -15,7 +15,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls" },
+        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls", "vuels" },
       })
     end,
   },
@@ -29,6 +29,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.tsserver.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.vuels.setup({
         capabilities = capabilities,
       })
       lspconfig.rust_analyzer.setup({
