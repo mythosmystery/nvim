@@ -16,6 +16,8 @@ return {
 				h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Menu" },
 				c = { "<cmd>lua require('harpoon.mark').clear_all_marks()<cr>", "Clear Marks" },
 				m = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Mark" },
+        n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next" },
+        p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Prev" },
 			},
 			d = {
 				name = "dap",
@@ -60,7 +62,7 @@ return {
 			},
 			g = {
 				name = "Git",
-        b = { "<cmd>Git blame<cr>", "Blame" },
+				b = { "<cmd>Git blame<cr>", "Blame" },
 				o = {
 					name = "Octo (Github)",
 					i = { "<cmd>Octo issue list<cr>", "Issue List" },
