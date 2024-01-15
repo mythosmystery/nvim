@@ -41,6 +41,7 @@ return {
         f = { "<cmd>Telescope buffers previewers=false<cr>", "Find" },
         p = { "<cmd>BufferLinePick<cr>", "Pick" },
         x = { "<cmd>BufferLinePickClose<cr>", "Pick and Close" },
+        e = { "<cmd>enew<cr>", "New" },
       },
       c = {
         name = "code",
