@@ -16,8 +16,8 @@ return {
 				h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Menu" },
 				c = { "<cmd>lua require('harpoon.mark').clear_all_marks()<cr>", "Clear Marks" },
 				m = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Mark" },
-        n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next" },
-        p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Prev" },
+				n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next" },
+				p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Prev" },
 			},
 			d = {
 				name = "dap",
@@ -38,6 +38,11 @@ return {
 				p = { "<cmd>BufferLinePick<cr>", "Pick" },
 				x = { "<cmd>BufferLinePickClose<cr>", "Pick and Close" },
 				e = { "<cmd>enew<cr>", "New" },
+				h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+				l = {
+					"<cmd>BufferLineCloseRight<cr>",
+					"Close all to the right",
+				},
 			},
 			c = {
 				name = "code",

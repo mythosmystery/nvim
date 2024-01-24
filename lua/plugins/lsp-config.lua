@@ -15,7 +15,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls", "vuels" },
+        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls", "vuels", "pyright", "css-lsp", "html-lsp", "tailwindcss-language-server" },
       })
     end,
   },
@@ -25,6 +25,16 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lspconfig = require("lspconfig")
+
+      lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.html.setup({
+        capabilities = capabilities,
+      })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
@@ -58,6 +68,9 @@ return {
       lspconfig.elixirls.setup({
         capabilities = capabilities,
         cmd = { "elixir-ls" },
+      })
+      lspconfig.pyright.setup({
+        capabilities = capabilities,
       })
 
       vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
