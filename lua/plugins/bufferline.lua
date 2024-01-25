@@ -13,7 +13,7 @@ return {
             padding = 1,
           },
           {
-            filetype = "neo-tree",
+            filetype = "NvimTree",
             text = "Explorer",
             highlight = "Directory",
             padding = 1,

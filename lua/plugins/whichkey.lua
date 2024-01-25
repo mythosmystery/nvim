@@ -8,7 +8,7 @@ return {
 	config = function()
 		local wk = require("which-key")
 		wk.register({
-			e = { "<cmd> Neotree filesystem toggle left<cr>", "Open File tree" },
+			e = { "<cmd>NvimTreeToggle<cr>", "Open File tree" },
 			w = { "<cmd>w!<cr>", "Save" },
 			q = { "<cmd>wq!<cr>", "Save and Quit" },
 			h = {
