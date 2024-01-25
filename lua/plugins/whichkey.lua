@@ -9,8 +9,8 @@ return {
 		local wk = require("which-key")
 		wk.register({
 			e = { "<cmd>NvimTreeToggle<cr>", "Open File tree" },
-			w = { "<cmd>w!<cr>", "Save" },
-			q = { "<cmd>wq!<cr>", "Save and Quit" },
+			w = { "<cmd>wa!<cr>", "Save" },
+			q = { "<cmd>wqa!<cr>", "Save and Quit" },
 			h = {
 				name = "harpoon",
 				h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Menu" },
