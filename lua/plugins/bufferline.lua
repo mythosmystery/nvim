@@ -1,7 +1,7 @@
 return {
-  'akinsho/bufferline.nvim',
-   version = "*",
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  "akinsho/bufferline.nvim",
+  version = "*",
+  dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
     require("bufferline").setup({
       options = {
@@ -34,10 +34,10 @@ return {
             text = "Lazy",
             highlight = "PanelHeading",
             padding = 1,
-          }
+          },
         },
-        always_show_bufferline = false
-      }
+        always_show_bufferline = false,
+      },
     })
-  end
+  end,
 }
