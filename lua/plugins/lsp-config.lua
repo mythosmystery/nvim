@@ -15,7 +15,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls", "vuels", "pyright", "cssls", "html", "tailwindcss" },
+        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls", "vuels", "pyright", "cssls", "html", "tailwindcss", "svelte" },
       })
     end,
   },
@@ -26,6 +26,10 @@ return {
 
       local lspconfig = require("lspconfig")
 
+
+      lspconfig.svelte.setup({
+        capabilities = capabilities,
+      })
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
       })
@@ -94,6 +98,7 @@ return {
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
       vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "gR", vim.lsp.buf.rename, {})
     end,
   },
 }
