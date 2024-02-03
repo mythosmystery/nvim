@@ -58,8 +58,6 @@ return {
             tools = {
               inlay_hints = {
                 auto = true,
-                parameter_hints_prefix = "<- ",
-                type_hints_prefix = "->: ",
               }
             }
           },
