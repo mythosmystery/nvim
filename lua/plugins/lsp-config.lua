@@ -1,3 +1,18 @@
+local servers = {
+  "tsserver",
+  "rust_analyzer",
+  "clangd",
+  "gopls",
+  "elixirls",
+  "vuels",
+  "pyright",
+  "cssls",
+  "html",
+  "tailwindcss",
+  "svelte",
+  "templ",
+}
+
 return {
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -15,7 +30,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "rust_analyzer", "clangd", "gopls", "elixirls", "vuels", "pyright", "cssls", "html", "tailwindcss", "svelte" },
+        ensure_installed = servers,
       })
     end,
   },
@@ -26,58 +41,23 @@ return {
 
       local lspconfig = require("lspconfig")
 
+      for _, server in ipairs(servers) do
+        local opts = {
+          capabilities = capabilities,
+        }
 
-      lspconfig.svelte.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.tailwindcss.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.html.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.tsserver.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.vuels.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
-        settings = {
-          ["rust-analyzer"] = {
-            diagnostics = {
-              enable = true,
+        if server == "rust_analyzer" then
+          opts.settings = {
+            ["rust-analyzer"] = {
+              inlayHints = {
+                auto = true
+              },
             },
-            tools = {
-              inlay_hints = {
-                auto = true,
-                parameter_hints_prefix = "<- ",
-                type_hints_prefix = "->: ",
-              }
-            }
-          },
-        },
-      })
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.elixirls.setup({
-        capabilities = capabilities,
-        cmd = { "elixir-ls" },
-      })
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-      })
+          }
+        end
+
+        lspconfig[server].setup(opts)
+      end
 
       vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -90,15 +70,15 @@ return {
           local bufnr = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           require("lsp-inlayhints").on_attach(client, bufnr)
+
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+          vim.keymap.set("n", "gD", vim.lsp.buf.definition, {})
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+          vim.keymap.set("n", "gR", vim.lsp.buf.rename, {})
         end,
       })
-
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gD", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "gR", vim.lsp.buf.rename, {})
     end,
   },
 }

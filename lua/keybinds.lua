@@ -20,3 +20,5 @@ vim.keymap.set('n', '<C-J>', '<C-W>j', opts)
 vim.keymap.set('n', '<C-K>', '<C-W>k', opts)
 vim.keymap.set('n', '<C-L>', '<C-W>l', opts)
 vim.keymap.set('n', '<C-i>', ':noh<CR>', opts)
+
+vim.filetype.add({ extension = { templ = "templ" } })
