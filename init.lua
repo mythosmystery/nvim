@@ -26,4 +26,3 @@ function vim.getVisualSelection()
 		return ""
 	end
 end
-
