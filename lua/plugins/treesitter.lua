@@ -22,8 +22,6 @@ return {
 							["ic"] = "@class.inner",
 							["aC"] = "@comment.outer",
 							["iC"] = "@comment.inner",
-							["aP"] = "@parameter.outer",
-							["iP"] = "@parameter.inner",
 							["ai"] = "@conditional.outer",
 							["ii"] = "@conditional.inner",
 							["al"] = "@loop.outer",
