@@ -16,10 +16,12 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<C-c>", "<ESC>", opts)
 vim.keymap.set("n", "<C-i>", ":noh<CR>", opts)
-vim.keymap.set("v", "<PageDown>", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "<PageUp>", ":m '<-2<CR>gv=gv", opts)
-vim.keymap.set("n", "<PageDown>", ":lua require('functions').move_line_down()<CR>", opts)
-vim.keymap.set("n", "<PageUp>", ":lua require('functions').move_line_up()<CR>", opts)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
+vim.keymap.set("n", "J", ":lua require('functions').move_line_down()<CR>", opts)
+vim.keymap.set("n", "K", ":lua require('functions').move_line_up()<CR>", opts)
+vim.keymap.set("n", "<C-n>", ":bnext<CR>", opts)
+vim.keymap.set("n", "<C-p>", ":bprev<CR>", opts)
 
 vim.filetype.add({ extension = { templ = "templ" } })
 
