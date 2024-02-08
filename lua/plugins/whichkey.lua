@@ -10,7 +10,9 @@ return {
     wk.register({
       e = { "<cmd>NvimTreeToggle<cr>", "Open File tree" },
       w = { "<cmd>wa!<cr>", "Save" },
-      q = { "<cmd>wqa!<cr>", "Save and Quit" },
+      q = { "<cmd>q<cr>", "Quit" },
+      b = { "<cmd>Telescope buffers<cr>", "Buffer Menu" },
+      x = { "<cmd>Bdelete<cr>", "Close Buffer" },
       h = {
         name = "harpoon",
         h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Menu" },
@@ -28,21 +30,6 @@ return {
         o = { "<cmd>lua require('dap').step_out()<cr>", "Step Out" },
         r = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle Repl" },
         x = { "<cmd>lua require('dap').terminate()<cr>", "Terminate" },
-      },
-      b = {
-        name = "buffer",
-        b = { "<cmd>BufferLineCyclePrev<cr>", "Prev" },
-        n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-        c = { "<cmd>Bdelete<cr>", "Kill" },
-        f = { "<cmd>Telescope buffers previewers=false<cr>", "Find" },
-        p = { "<cmd>BufferLinePick<cr>", "Pick" },
-        x = { "<cmd>BufferLinePickClose<cr>", "Pick and Close" },
-        e = { "<cmd>enew<cr>", "New" },
-        h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-        l = {
-          "<cmd>BufferLineCloseRight<cr>",
-          "Close all to the right",
-        },
       },
       c = {
         name = "code",
