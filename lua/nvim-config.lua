@@ -15,7 +15,7 @@ vim.cmd("set scrolloff=8")
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<C-c>", "<ESC>", opts)
-vim.keymap.set("n", "<C-i>", ":noh<CR>", opts)
+vim.keymap.set("n", "<C-,>", ":noh<CR>", opts)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set("n", "J", ":lua require('functions').move_line_down()<CR>", opts)

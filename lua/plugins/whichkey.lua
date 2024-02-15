@@ -12,7 +12,7 @@ return {
 			w = { "<cmd>wa!<cr>", "Save" },
 			q = { "<cmd>q<cr>", "Quit" },
 			b = { "<cmd>Telescope buffers<cr>", "Buffer Menu" },
-			x = { "<cmd>Bdelete<cr>", "Close Buffer" },
+			x = { "<cmd>bdelete<cr>", "Close Buffer" },
 			h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Menu" },
 			m = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Mark" },
 			n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next" },
@@ -41,6 +41,7 @@ return {
 					"Format File",
 				},
 				h = { require("lsp-inlayhints").toggle, "Toggle Inlay Hints" },
+        r = { "<cmd>LspRestart<cr>", "Restart LSP" },
 			},
 			[" "] = { "<cmd> Telescope find_files<cr>", "Search" },
 			t = {
