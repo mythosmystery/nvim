@@ -5,6 +5,11 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup {}
+    require("nvim-tree").setup({})
+    vim.api.nvim_create_autocmd({ "QuitPre" }, {
+      callback = function()
+        vim.cmd("NvimTreeClose")
+      end,
+    })
   end,
 }

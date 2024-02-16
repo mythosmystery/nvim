@@ -53,6 +53,9 @@ return {
               inlayHints = {
                 auto = true
               },
+              check = {
+                command = "clippy"
+              }
             },
           }
         end
