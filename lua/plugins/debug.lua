@@ -59,7 +59,35 @@ return {
 
     dap.configurations.c = {
       {
-        name = "Launch",
+        name = "Make and Launch",
+        type = "lldb",
+        request = "launch",
+        program = function()
+          local cwd = vim.fn.getcwd()
+          local result = vim.fn.system("make debug 2>&1")
+
+          -- Check if there was an error
+          if vim.v.shell_error ~= 0 then
+            -- Handle error. vim.v.shell_error contains the exit status of the last :! command
+            print("Error:", result)
+            return nil
+          else
+            -- Handle success
+            print("Output:", result)
+            local path = cwd .. "/main"
+            local file = io.open(path, "r")
+            if file == nil then
+              print("No executable found")
+              return vim.fn.input("Path to executable: ", cwd .. "/", "file")
+            end
+            file:close()
+            return path
+          end
+        end,
+        cwd = "${workspaceFolder}",
+      },
+      {
+        name = "Launch from Path",
         type = "lldb",
         request = "launch",
         program = function()
@@ -110,27 +138,7 @@ return {
       hl = "Comment",
     })
 
-    dapui.setup({
-      layouts = {
-        {
-          elements = {
-            { id = "scopes",      size = 0.25 },
-            { id = "stacks",      size = 0.25 },
-            { id = "breakpoints", size = 0.25 },
-            { id = "watches",     size = 0.25 },
-          },
-          position = "left",
-          size = 40,
-        },
-        {
-          elements = {
-            { id = "repl", size = 1 },
-          },
-          position = "bottom",
-          size = 10,
-        },
-      },
-    })
+    dapui.setup()
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
