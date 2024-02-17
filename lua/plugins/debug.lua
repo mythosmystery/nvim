@@ -37,6 +37,17 @@ return {
           cwd = "${workspaceFolder}",
         },
         {
+          name = "Launch Server",
+          type = "pwa-node",
+          request = "launch",
+          runtimeExecutable = "${workspaceFolder}/node_modules/.bin/ts-node",
+          runtimeArgs = {
+            "${workspaceFolder}/src/main.ts",
+          },
+          cwd = "${workspaceFolder}",
+          skipFiles = { "<node_internals>/**", "node_modules/**" },
+        },
+        {
           type = "pwa-node",
           request = "attach",
           name = "Attach",
