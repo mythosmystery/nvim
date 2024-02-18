@@ -24,7 +24,8 @@ return {
         s = { "<cmd>lua require('dap').step_over()<cr>", "Step Over" },
         i = { "<cmd>lua require('dap').step_into()<cr>", "Step Into" },
         o = { "<cmd>lua require('dap').step_out()<cr>", "Step Out" },
-        r = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle Repl" },
+        w = { "<cmd>lua require('dapui').elements.watches.add()<cr>", "Watch" },
+        r = { "<cmd>lua require('dapui').elements.watches.remove()<cr>", "Remove Watch" },
         x = {
           function()
             require("dap").disconnect()
