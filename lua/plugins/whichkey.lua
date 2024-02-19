@@ -101,7 +101,6 @@ return {
       },
       D = {
         name = "database",
-        m = { "<cmd>lua require('mongo-nvim.telescope.pickers').database_picker()<cr>", "Mongo" },
       },
     }, { prefix = "<leader>" })
     wk.register({
