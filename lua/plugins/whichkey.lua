@@ -12,11 +12,35 @@ return {
       w = { "<cmd>wa!<cr>", "Save" },
       q = { "<cmd>q<cr>", "Quit" },
       b = { "<cmd>Telescope buffers<cr>", "Buffer Menu" },
-      x = { "<cmd>bdelete<cr>", "Close Buffer" },
       h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Menu" },
       m = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Mark" },
       n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next" },
       p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Prev" },
+      y = {
+        name = "Worktrees",
+        m = {
+          function ()
+            require("git-worktree").switch_worktree("main")
+          end,
+          "Goto Main"
+        },
+        s = {
+          function()
+            local branch = vim.fn.input("Branch to switch to: ")
+            local path = string.gsub(branch, "/", "_")
+            require("git-worktree").switch_worktree(path)
+          end,
+          "Switch Worktree"
+        },
+        c = {
+          function ()
+            local branch = vim.fn.input("Create a new worktree: ")
+            local path = string.gsub(branch, "/", "_")
+            require("git-worktree").create_worktree(path, branch)
+          end,
+          "Create Worktree"
+        }
+      },
       d = {
         name = "dap",
         b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
@@ -91,6 +115,14 @@ return {
           "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
           "Colorscheme with Preview",
         },
+      },
+      x = {
+        name = "Trouble",
+        x = { "<cmd>TroubleToggle<cr>", "Toggle" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace" },
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Location List" },
       },
       P = {
         name = "Plugins",

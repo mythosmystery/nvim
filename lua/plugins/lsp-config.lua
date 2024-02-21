@@ -11,7 +11,7 @@ local servers = {
   "tailwindcss",
   "svelte",
   "templ",
-  "lua_ls"
+  "lua_ls",
 }
 
 return {
@@ -35,9 +35,12 @@ return {
       })
     end,
   },
+  { "folke/neodev.nvim" },
   {
     "neovim/nvim-lspconfig",
     config = function()
+      require("neodev").setup()
+
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lspconfig = require("lspconfig")
@@ -51,11 +54,11 @@ return {
           opts.settings = {
             ["rust-analyzer"] = {
               inlayHints = {
-                auto = true
+                auto = true,
               },
               check = {
-                command = "clippy"
-              }
+                command = "clippy",
+              },
             },
           }
         end
@@ -78,7 +81,9 @@ return {
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
           vim.keymap.set("n", "gD", vim.lsp.buf.definition, {})
           vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+          vim.keymap.set("n", "gr", function()
+            require("trouble").toggle("lsp_references")
+          end, {})
           vim.keymap.set("n", "H", vim.lsp.buf.hover, {})
           vim.keymap.set("n", "gR", vim.lsp.buf.rename, {})
         end,

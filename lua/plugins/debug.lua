@@ -66,14 +66,10 @@ return {
           local cwd = vim.fn.getcwd()
           local result = vim.fn.system("make debug 2>&1")
 
-          -- Check if there was an error
           if vim.v.shell_error ~= 0 then
-            -- Handle error. vim.v.shell_error contains the exit status of the last :! command
             print("Error:", result)
             return nil
           else
-            -- Handle success
-            print("Output:", result)
             local path = cwd .. "/main"
             local file = io.open(path, "r")
             if file == nil then
