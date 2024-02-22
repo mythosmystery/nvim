@@ -1,13 +1,16 @@
 return {
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  opts = {
-    presets = {
-      lsp_doc_border = true,
+	"folke/noice.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
+	},
+	opts = {
+    messages = {
+      enabled = false
     },
-  },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-  },
+    notify = {
+      enabled = false
+    }
+	},
 }
