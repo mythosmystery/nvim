@@ -27,6 +27,9 @@ return {
         s = {
           function()
             local branch = vim.fn.input("Branch to switch to: ")
+            if branch == "" then
+              return
+            end
             local path = string.gsub(branch, "/", "_")
             require("git-worktree").switch_worktree(path)
           end,
@@ -35,10 +38,21 @@ return {
         c = {
           function ()
             local branch = vim.fn.input("Create a new worktree: ")
+            if branch == "" then
+              return
+            end
             local path = string.gsub(branch, "/", "_")
             require("git-worktree").create_worktree(path, branch)
           end,
           "Create Worktree"
+        },
+        t = {
+          require("telescope").extensions.git_worktree.git_worktrees,
+          "Telescope"
+        },
+        g = {
+          require("telescope").extensions.git_worktree.create_git_worktree,
+          "Create with Telescope"
         }
       },
       d = {
