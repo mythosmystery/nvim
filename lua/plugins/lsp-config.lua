@@ -12,6 +12,7 @@ local servers = {
   "svelte",
   "templ",
   "lua_ls",
+  "bashls"
 }
 
 return {
@@ -84,7 +85,7 @@ return {
           vim.keymap.set("n", "gr", function()
             require("trouble").toggle("lsp_references")
           end, {})
-          vim.keymap.set("n", "H", vim.lsp.buf.hover, {})
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
           vim.keymap.set("n", "gR", vim.lsp.buf.rename, {})
         end,
       })
