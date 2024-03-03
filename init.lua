@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("nvim-config")
 require("lazy").setup("plugins")
 
-function vim.getVisualSelection()
+function vim.get_visual_selection()
 	vim.cmd('noau normal! "vy"')
 	local text = vim.fn.getreg("v")
 	vim.fn.setreg("v", {})

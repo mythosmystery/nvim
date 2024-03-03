@@ -37,6 +37,24 @@ return {
           },
         },
       })
+
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
+      vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
+      vim.keymap.set("n", "<leader>fs", builtin.builtin, { desc = "[F]ind [S]elect Telescope" })
+      vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
+      vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
+      vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "[F]ind [R]ecent Files" })
+      vim.keymap.set("n", "<leader>fb", builtin.git_branches, { desc = "[F]ind [B]ranches" })
+      vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Find existing [B]uffers" })
+      vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+
+      vim.keymap.set("v", "<leader>s", function()
+        require("telescope.builtin").grep_string({ search = vim.fn.getreg('"') })
+      end, { desc = "Grep Visual Selection" })
+
       require("telescope").load_extension("ui-select")
       require("telescope").load_extension("git_worktree")
     end,

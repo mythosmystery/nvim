@@ -164,5 +164,28 @@ return {
     dap.listeners.before.event_exited.dapui_config = function()
       dapui.close()
     end
+
+    vim.keymap.set(
+      "n",
+      "<leader>db",
+      '<cmd>lua require("dap").toggle_breakpoint()<cr>',
+      { desc = "Toggle [B]reakpoint" }
+    )
+    vim.keymap.set("n", "<leader>dc", '<cmd>lua require("dap").continue()<cr>', { desc = "[C]ontinue" })
+    vim.keymap.set("n", "<leader>ds", '<cmd>lua require("dap").step_over()<cr>', { desc = "[S]tep Over" })
+    vim.keymap.set("n", "<leader>di", '<cmd>lua require("dap").step_into()<cr>', { desc = "Step [I]nto" })
+    vim.keymap.set("n", "<leader>do", '<cmd>lua require("dap").step_out()<cr>', { desc = "Step [O]ut" })
+    vim.keymap.set("n", "<leader>dw", '<cmd>lua require("dapui").elements.watches.add()<cr>', { desc = "[W]atch" })
+    vim.keymap.set(
+      "n",
+      "<leader>dr",
+      '<cmd>lua require("dapui").elements.watches.remove()<cr>',
+      { desc = "[R]emove Watch" }
+    )
+    vim.keymap.set("n", "<leader>dx", function()
+      require("dap").disconnect()
+      require("dap").close()
+      require("dapui").close()
+    end, { desc = "E[x]it" })
   end,
 }
