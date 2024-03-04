@@ -13,6 +13,7 @@ vim.keymap.set("n", "<C-d>", ":bdelete<CR>", opts)
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open File tr[e]e" })
 vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "[Q]uit" })
+vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
 vim.keymap.set("n", "<leader>s", "<cmd>source %<cr>", { desc = "Re-[S]ource" })
 
 -- Plugins sub-menu
