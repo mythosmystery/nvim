@@ -19,15 +19,11 @@ local servers = {
 return {
 	{
 		"lvimuser/lsp-inlayhints.nvim",
-		config = function()
-			require("lsp-inlayhints").setup()
-		end,
+		opts = {},
 	},
 	{
 		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
+		opts = {},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",

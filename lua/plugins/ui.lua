@@ -16,9 +16,7 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
-			require("nvim-tree").setup({})
-		end,
+		opts = {},
 	},
 	{
 		"folke/tokyonight.nvim",
@@ -30,9 +28,7 @@ return {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		config = function()
-			require("nvim-highlight-colors").setup()
-		end,
+		opts = {},
 	},
 	{
 		"folke/noice.nvim",
