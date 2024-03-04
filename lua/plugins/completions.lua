@@ -38,6 +38,8 @@ return {
 
 			vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#0db9d7" })
 
+			local luasnip = require("luasnip")
+
 			-- `/` cmdline setup.
 			cmp.setup.cmdline("/", {
 				mapping = cmp.mapping.preset.cmdline(),
@@ -81,6 +83,16 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 					["<Tab>"] = cmp.mapping.confirm({ select = true }),
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<C-l>"] = cmp.mapping(function()
+						if luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
+						end
+					end, { "i", "s" }),
+					["<C-h>"] = cmp.mapping(function()
+						if luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						end
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
