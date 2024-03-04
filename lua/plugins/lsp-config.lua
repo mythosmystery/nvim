@@ -105,33 +105,46 @@ return {
 					require("lsp-inlayhints").on_attach(client, bufnr)
 
 					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions" })
-					-- vim.keymap.set("n", "<leader>cf", function()
-					-- 	vim.lsp.buf.format({
-					-- 		filter = function(c)
-					-- 			return c.name ~= "tsserver"
-					-- 		end,
-					-- 	})
-					-- end, { desc = "[F]ormat File" })
 					vim.keymap.set("n", "<leader>cf", require("conform").format, { desc = "[F]ormat File" })
+
 					vim.keymap.set(
 						"n",
 						"<leader>ch",
 						require("lsp-inlayhints").toggle,
 						{ desc = "Toggle Inlay [H]ints" }
 					)
+
 					vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "[R]estart LSP" })
 					vim.keymap.set("n", "cR", vim.lsp.buf.rename, { desc = "[R]ename" })
 
 					vim.keymap.set("n", "gd", function()
 						require("trouble").toggle("lsp_definitions")
 					end, { desc = "[G]oto [D]efinition" })
+
 					vim.keymap.set("n", "gD", function()
 						require("trouble").toggle("lsp_type_definitions")
 					end, { desc = "[G]oto Type [D]efinition" })
+
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation" })
+
 					vim.keymap.set("n", "gr", function()
 						require("trouble").toggle("lsp_references")
 					end, { desc = "[G]oto [R]eferences" })
+
+					vim.keymap.set(
+						"n",
+						"gds",
+						require("telescope.builtin").lsp_document_symbols,
+						{ desc = "[G]oto [D]ocument [S]ymbols" }
+					)
+
+					vim.keymap.set(
+						"n",
+						"gws",
+						require("telescope.builtin").lsp_workspace_symbols,
+						{ desc = "[G]oto [W]orkspace [S]ymbols" }
+					)
+
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 				end,
 			})
