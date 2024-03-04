@@ -55,7 +55,7 @@ return {
 			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "[F]ind [R]ecent Files" })
 			vim.keymap.set("n", "<leader>fb", builtin.git_branches, { desc = "[F]ind [B]ranches" })
 			vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Find existing [B]uffers" })
-			vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+			vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
 
 			vim.keymap.set("v", "<leader>s", function()
 				require("telescope.builtin").grep_string({ search = require("functions").get_visual_selection() })

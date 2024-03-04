@@ -11,9 +11,6 @@ return {
 		end,
 	},
 	{
-		"theprimeagen/git-worktree.nvim",
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			current_line_blame = true,
@@ -21,6 +18,7 @@ return {
 	},
 	{
 		"pwntester/octo.nvim",
+		cmd = "Octo",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
