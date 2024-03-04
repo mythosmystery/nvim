@@ -37,6 +37,15 @@ return {
 			})
 		end,
 	},
+	{
+		"LhKipp/nvim-nu",
+		config = function()
+			require("nu").setup({
+				-- options go here
+				use_lsp_features = true,
+			})
+		end,
+	},
 	{ "folke/neodev.nvim" },
 	{
 		"stevearc/conform.nvim",
