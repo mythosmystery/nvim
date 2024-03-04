@@ -8,7 +8,7 @@ vim.keymap.set("n", "<C-S-j>", ":lua require('functions').move_line_up()<CR>", o
 
 vim.keymap.set("n", "<C-n>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<C-p>", ":bprev<CR>", opts)
-vim.keymap.set("n", "<C-d>", ":bdelete<CR>", opts)
+vim.keymap.set("n", "<C-x>", ":bdelete<CR>", opts)
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open File tr[e]e" })
 vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite" })

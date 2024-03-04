@@ -1,13 +1,7 @@
 return {
 	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-		},
-	},
-	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
 			"onsails/lspkind-nvim",
 			"hrsh7th/cmp-nvim-lsp",
@@ -17,6 +11,13 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"zbirenbaum/copilot-cmp",
 			"zbirenbaum/copilot.lua",
+			{
+				"L3MON4D3/LuaSnip",
+				dependencies = {
+					"saadparwaiz1/cmp_luasnip",
+					"rafamadriz/friendly-snippets",
+				},
+			},
 		},
 		config = function()
 			local cmp = require("cmp")

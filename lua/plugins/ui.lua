@@ -22,6 +22,7 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		name = "tokyonight",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("tokyonight")
@@ -36,7 +37,6 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
 		opts = {
 			messages = {
@@ -49,6 +49,7 @@ return {
 	},
 	{
 		"goolord/alpha-nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},

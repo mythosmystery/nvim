@@ -1,6 +1,7 @@
 return {
 	{
 		"tpope/vim-fugitive",
+		cmd = "Git",
 		config = function()
 			vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git [S]tatus" })
 			vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", { desc = "Git [C]ommit" })

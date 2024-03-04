@@ -35,6 +35,7 @@ return {
 	},
 	{
 		"LhKipp/nvim-nu",
+		lazy = true,
 		config = function()
 			require("nu").setup({
 				-- options go here
