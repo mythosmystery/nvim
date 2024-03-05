@@ -71,7 +71,7 @@ M.setup = function()
 		vim.fn.system({ "mkdir", "-p", M.notes_dir })
 	end
 
-	vim.keymap.set("n", "<leader>nn", M.toggle, { desc = "[T]oggle" })
+	vim.keymap.set("n", "<leader>nn", M.toggle, { desc = "Toggle [N]ote Window" })
 	vim.keymap.set("n", "<leader>nf", M.search_notes, { desc = "[F]ind" })
 	vim.keymap.set("n", "<leader>ng", M.grep_notes, { desc = "[G]rep" })
 
