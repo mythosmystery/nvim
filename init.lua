@@ -15,6 +15,4 @@ require("config")
 require("keymaps")
 require("autocmds")
 
-require("notes").setup()
-
 require("lazy").setup("plugins")
