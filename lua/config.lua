@@ -20,5 +20,6 @@ vim.opt.splitbelow = true
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = true
+vim.opt.wrap = false
 
 vim.filetype.add({ extension = { templ = "templ" } })

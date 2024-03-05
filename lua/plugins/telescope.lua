@@ -59,7 +59,7 @@ return {
 
 			vim.keymap.set("v", "<leader>s", function()
 				require("telescope.builtin").grep_string({ search = require("functions").get_visual_selection() })
-			end, { desc = "Grep Visual Selection" })
+			end, { desc = "[S]earch Visual Selection" })
 
 			vim.keymap.set("n", "<leader>/", function()
 				-- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -76,12 +76,12 @@ return {
 					grep_open_files = true,
 					prompt_title = "Live Grep in Open Files",
 				})
-			end, { desc = "[S]earch [/] in Open Files" })
+			end, { desc = "[F]ind [/] in Open Files" })
 
 			-- Shortcut for searching your neovim configuration files
-			vim.keymap.set("n", "<leader>fn", function()
+			vim.keymap.set("n", "<leader>fc", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[S]earch [N]eovim files" })
+			end, { desc = "[F]ind Neovim [C]onfig" })
 
 			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("fzf")
