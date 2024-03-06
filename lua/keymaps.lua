@@ -4,10 +4,10 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<ESC>", ":noh<CR>", opts)
 
 vim.keymap.set("n", "<C-S-j>", ":lua require('functions').move_line_down()<CR>", opts)
-vim.keymap.set("n", "<C-S-j>", ":lua require('functions').move_line_up()<CR>", opts)
+vim.keymap.set("n", "<C-S-k>", ":lua require('functions').move_line_up()<CR>", opts)
 
-vim.keymap.set("n", "<C-n>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<C-p>", ":bprev<CR>", opts)
+vim.keymap.set("n", "<C-n>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<C-x>", ":bdelete<CR>", opts)
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open File tr[e]e" })

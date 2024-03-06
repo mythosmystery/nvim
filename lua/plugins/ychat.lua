@@ -1,5 +1,5 @@
 return {
-  dir = "~/Documents/ychat.nvim",
+  "mythosmystery/ychat.nvim",
   config = function()
     require("ychat").setup()
 
