@@ -41,19 +41,27 @@ return {
 		opts = {},
 	},
 	{
+		"j-hui/fidget.nvim",
+		opts = {},
+	},
+	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
 		},
-		opts = {
-			messages = {
-				enabled = false,
-			},
-			notify = {
-				enabled = false,
-			},
-		},
+		config = function()
+			if vim.g.neovide then
+				require("noice").setup({
+					lsp = {
+						progress = {
+							enabled = false,
+						},
+					},
+				})
+			end
+		end,
 	},
 	{
 		"goolord/alpha-nvim",
