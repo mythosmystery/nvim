@@ -20,6 +20,10 @@ vim.opt.splitbelow = true
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = true
+vim.opt.showmode = false
 vim.opt.wrap = false
 
 vim.filetype.add({ extension = { templ = "templ" } })
+
+-- Neovide config
+vim.o.guifont = "MesloLGS NF:h16"

@@ -1,5 +1,8 @@
 return {
 	{ "numToStr/Comment.nvim", opts = {} },
+	{ "nanotee/zoxide.vim", dependencies = {
+		"junegunn/fzf",
+	} },
 	{
 		"echasnovski/mini.nvim",
 		config = function()
@@ -17,6 +20,10 @@ return {
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
+
+			require("mini.bufremove").setup()
+
+			vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, { desc = "Delete Buffer" })
 		end,
 	},
 	{

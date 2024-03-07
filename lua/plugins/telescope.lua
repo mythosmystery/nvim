@@ -34,10 +34,10 @@ return {
 						sort_mru = true,
 						mappings = {
 							i = {
-								["<C-d>"] = "delete_buffer",
+								["<C-x>"] = "delete_buffer",
 							},
 							n = {
-								["<C-d>"] = "delete_buffer",
+								["<C-x>"] = "delete_buffer",
 							},
 						},
 					},
