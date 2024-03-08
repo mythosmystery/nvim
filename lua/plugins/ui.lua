@@ -59,6 +59,12 @@ return {
 							enabled = false,
 						},
 					},
+					routes = {
+						{
+							view = "notify",
+							filter = { event = "msg_showmode" },
+						},
+					},
 				})
 			end
 		end,

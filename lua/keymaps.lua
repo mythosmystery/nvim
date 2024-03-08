@@ -8,6 +8,7 @@ vim.keymap.set("n", "<C-S-k>", require("functions").move_line_up, opts)
 
 vim.keymap.set("n", "<C-p>", ":bprev<CR>", opts)
 vim.keymap.set("n", "<C-n>", ":bnext<CR>", opts)
+vim.keymap.set({ "n", "v", "i" }, "<C-c>", "<ESC>", opts)
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open File tr[e]e" })
 vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite" })
@@ -28,4 +29,3 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set("i", "<C-z>", "<C-o>u", opts)
 vim.keymap.set("i", "<C-j>", "<C-o>o", opts)
 vim.keymap.set("i", "<C-k>", "<C-o>O", opts)
-vim.keymap.set("i", "<C-c>", "<ESC>", opts)
