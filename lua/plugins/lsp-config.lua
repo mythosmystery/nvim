@@ -1,48 +1,11 @@
-local servers = {
-	"tsserver",
-	"rust_analyzer",
-	"clangd",
-	"gopls",
-	"elixirls",
-	"vuels",
-	"pyright",
-	"cssls",
-	"html",
-	"tailwindcss",
-	"svelte",
-	"templ",
-	"lua_ls",
-	"bashls",
-	"eslint",
-}
-
 return {
 	{
-		"lvimuser/lsp-inlayhints.nvim",
-		opts = {},
-	},
-	{
-		"williamboman/mason.nvim",
-		opts = {},
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = servers,
-			})
-		end,
-	},
-	{
 		"LhKipp/nvim-nu",
-		config = function()
-			require("nu").setup({
-				-- options go here
-				use_lsp_features = true,
-			})
-		end,
+		ft = "nu",
+		opts = {
+			use_lsp_features = true,
+		},
 	},
-	{ "folke/neodev.nvim" },
 	{
 		"stevearc/conform.nvim",
 		opts = {
@@ -63,21 +26,22 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"lvimuser/lsp-inlayhints.nvim",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer",
+			"folke/neodev.nvim",
+			{
+				"j-hui/fidget.nvim",
+				opts = {},
+			},
+		},
 		config = function()
-			require("neodev").setup()
-
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-			local lspconfig = require("lspconfig")
-
-			for _, server in ipairs(servers) do
-				local opts = {
-					capabilities = capabilities,
-				}
-
-				if server == "rust_analyzer" then
-					opts.settings = {
+			local servers = {
+				tsserver = {},
+				rust_analyzer = {
+					settings = {
 						["rust-analyzer"] = {
 							inlayHints = {
 								auto = true,
@@ -86,11 +50,49 @@ return {
 								command = "clippy",
 							},
 						},
-					}
-				end
+					},
+				},
+				clangd = {},
+				gopls = {},
+				elixirls = {},
+				vuels = {},
+				pyright = {},
+				cssls = {},
+				html = {},
+				tailwindcss = {},
+				svelte = {},
+				templ = {},
+				lua_ls = {},
+				eslint = {},
+			}
 
-				lspconfig[server].setup(opts)
-			end
+			require("neodev").setup()
+
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+			require("mason").setup()
+
+			local ensure_installed = vim.tbl_keys(servers or {})
+			vim.list_extend(ensure_installed, {
+				"eslint_d",
+				"prettier",
+				"stylua",
+			})
+
+			require("mason-tool-installer").setup({
+				ensure_installed = ensure_installed,
+			})
+
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						local server = servers[server_name] or {}
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						require("lspconfig")[server_name].setup(server)
+					end,
+				},
+			})
 
 			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 			vim.api.nvim_create_autocmd("LspAttach", {

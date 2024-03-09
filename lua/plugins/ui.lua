@@ -13,7 +13,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
-		cmd = "NvimTreeToggle",
+		cmd = { "NvimTreeToggle", "NvimTreeOpen" },
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -41,59 +41,27 @@ return {
 		opts = {},
 	},
 	{
-		"j-hui/fidget.nvim",
-		opts = {},
-	},
-	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
+		cond = vim.g.neovide,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
 		config = function()
-			if vim.g.neovide then
-				require("noice").setup({
-					lsp = {
-						progress = {
-							enabled = false,
-						},
+			require("noice").setup({
+				lsp = {
+					progress = {
+						enabled = false,
 					},
-					routes = {
-						{
-							view = "notify",
-							filter = { event = "msg_showmode" },
-						},
+				},
+				routes = {
+					{
+						view = "notify",
+						filter = { event = "msg_showmode" },
 					},
-				})
-			end
-		end,
-	},
-	{
-		"goolord/alpha-nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-
-		config = function()
-			if vim.g.neovide then
-				local alpha = require("alpha")
-				local dashboard = require("alpha.themes.startify")
-
-				dashboard.section.header.val = {
-					[[                                                                     ]],
-					[[       ████ ██████           █████      ██                     ]],
-					[[      ███████████             █████                             ]],
-					[[      █████████ ███████████████████ ███   ███████████   ]],
-					[[     █████████  ███    █████████████ █████ ██████████████   ]],
-					[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-					[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-					[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-					[[                                                                       ]],
-				}
-
-				alpha.setup(dashboard.opts)
-			end
+				},
+			})
 		end,
 	},
 	{
@@ -101,25 +69,24 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
+		cond = vim.g.neovide,
 		config = function()
-			if vim.g.neovide then
-				require("bufferline").setup({
-					options = {
-						diagnostics = "nvim_lsp",
-						diagnostics_indicator = function(count, level)
-							local icon = level:match("error") and "" or ""
-							return " " .. icon .. count
-						end,
-						offsets = {
-							{
-								filetype = "NvimTree",
-								text = "File Explorer",
-								text_align = "center",
-							},
+			require("bufferline").setup({
+				options = {
+					diagnostics = "nvim_lsp",
+					diagnostics_indicator = function(count, level)
+						local icon = level:match("error") and "" or ""
+						return " " .. icon .. count
+					end,
+					offsets = {
+						{
+							filetype = "NvimTree",
+							text = "File Explorer",
+							text_align = "center",
 						},
 					},
-				})
-			end
+				},
+			})
 		end,
 	},
 }

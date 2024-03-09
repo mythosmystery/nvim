@@ -1,9 +1,10 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
+		},
 		build = ":TSUpdate",
 		config = function()
 			local config = require("nvim-treesitter.configs")
@@ -11,10 +12,10 @@ return {
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
-        autotag = {
-          enable = true,
-          filetypes = { "html", "svelte", "vue", "jsx", "tsx" },
-        },
+				autotag = {
+					enable = true,
+					filetypes = { "html", "svelte", "vue", "jsx", "tsx" },
+				},
 				textobjects = {
 					select = {
 						enable = true,
