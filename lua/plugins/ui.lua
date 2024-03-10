@@ -43,7 +43,7 @@ return {
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		cond = vim.g.neovide,
+		cond = vim.g.neovide ~= nil,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
@@ -69,7 +69,7 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		cond = vim.g.neovide,
+		cond = vim.g.neovide ~= nil,
 		config = function()
 			require("bufferline").setup({
 				options = {
