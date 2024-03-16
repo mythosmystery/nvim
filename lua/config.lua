@@ -26,4 +26,4 @@ vim.opt.wrap = false
 vim.filetype.add({ extension = { templ = "templ" } })
 
 -- Neovide config
-vim.o.guifont = "MesloLGS NF:h16"
+vim.o.guifont = "MesloLGS NF:h14"
