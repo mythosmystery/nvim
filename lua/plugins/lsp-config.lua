@@ -21,6 +21,7 @@ return {
 				typescriptreact = { { "eslint_d", "prettier" } },
 				vue = { { "eslint_d", "prettier" } },
 				svelte = { { "eslint_d", "prettier" } },
+				go = { "gofmt", "goimports" },
 			},
 		},
 	},
