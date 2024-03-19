@@ -64,6 +64,8 @@ return {
 				templ = {},
 				lua_ls = {},
 				eslint = {},
+				dockerls = {},
+				docker_compose_language_service = {},
 			}
 
 			require("neodev").setup()

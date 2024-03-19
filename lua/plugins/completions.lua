@@ -30,12 +30,19 @@ return {
 				},
 			})
 
+			-- require("copilot").setup({
+			-- 	suggestion = { enabled = false },
+			-- 	panel = { enabled = false },
+			-- })
+			-- require("copilot_cmp").setup()
 			require("copilot").setup({
-				suggestion = { enabled = false },
-				panel = { enabled = false },
+				suggestion = {
+					auto_trigger = true,
+					keymap = {
+						accept = "<C-s>",
+					},
+				},
 			})
-
-			require("copilot_cmp").setup()
 
 			vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#0db9d7" })
 
@@ -98,7 +105,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "nvim_lua" },
-					{ name = "copilot" },
+					-- { name = "copilot" },
 				}, {
 					{ name = "buffer" },
 					{ name = "path" },

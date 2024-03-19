@@ -27,3 +27,4 @@ vim.filetype.add({ extension = { templ = "templ" } })
 
 -- Neovide config
 vim.o.guifont = "MesloLGS NF:h16"
+vim.g.neovide_cursor_vfx_mode = "railgun"
