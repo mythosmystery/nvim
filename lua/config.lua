@@ -26,4 +26,4 @@ vim.opt.wrap = false
 vim.filetype.add({ extension = { templ = "templ" } })
 
 vim.g.neovide_cursor_vfx_mode = "railgun"
-vim.o.guifont = "MesloLGS NF:h14"
+vim.o.guifont = "MesloLGS NF:h16"

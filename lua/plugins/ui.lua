@@ -23,7 +23,7 @@ return {
 				enable = true,
 			},
 			renderer = {
-				highlight_diagnostics = "all",
+				highlight_diagnostics = true,
 			},
 		},
 	},
@@ -59,31 +59,6 @@ return {
 					{
 						view = "notify",
 						filter = { event = "msg_showmode" },
-					},
-				},
-			})
-		end,
-	},
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		cond = vim.g.neovide ~= nil,
-		config = function()
-			require("bufferline").setup({
-				options = {
-					diagnostics = "nvim_lsp",
-					diagnostics_indicator = function(count, level)
-						local icon = level:match("error") and "" or ""
-						return " " .. icon .. count
-					end,
-					offsets = {
-						{
-							filetype = "NvimTree",
-							text = "File Explorer",
-							text_align = "center",
-						},
 					},
 				},
 			})
