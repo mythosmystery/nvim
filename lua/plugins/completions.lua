@@ -1,5 +1,11 @@
 return {
 	{
+		"David-Kunz/gen.nvim",
+		opts = {
+			model = "gemma:7b",
+		},
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
@@ -26,7 +32,7 @@ return {
 			require("lspkind").init({
 				preset = "codicons",
 				symbol_map = {
-					Copilot = "",
+					cmp_ai = "",
 				},
 			})
 

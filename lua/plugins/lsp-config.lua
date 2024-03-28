@@ -22,6 +22,7 @@ return {
 				vue = { { "eslint_d", "prettier" } },
 				svelte = { { "eslint_d", "prettier" } },
 				go = { "gofmt", "goimports" },
+				ocaml = { "ocamlformat" },
 			},
 		},
 	},
@@ -67,6 +68,7 @@ return {
 				eslint = {},
 				dockerls = {},
 				docker_compose_language_service = {},
+				zls = {},
 			}
 
 			require("neodev").setup()

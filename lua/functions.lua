@@ -25,4 +25,15 @@ M.get_visual_selection = function()
 	end
 end
 
+M.get_system_theme = function()
+	local out = os.execute("defaults read -g AppleInterfaceStyle 2>/dev/null")
+	local is_dark = out == 0
+
+	if is_dark then
+		return "dark"
+	else
+		return "light"
+	end
+end
+
 return M

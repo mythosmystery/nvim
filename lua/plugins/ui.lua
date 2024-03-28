@@ -2,13 +2,11 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "tokyonight",
-				},
-			})
-		end,
+		opts = {
+			options = {
+				theme = require("functions").get_system_theme() == "dark" and "tokyonight" or "papercolor",
+			},
+		},
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -30,10 +28,30 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		name = "tokyonight",
-		lazy = false,
+		cond = function()
+			return require("functions").get_system_theme() == "dark"
+		end,
 		priority = 1000,
 		config = function()
+			require("tokyonight").setup({
+				styles = {
+					sidebars = "normal",
+					floats = "normal",
+				},
+			})
 			vim.cmd.colorscheme("tokyonight")
+			vim.opt.background = "dark"
+		end,
+	},
+	{
+		"NLKNguyen/papercolor-theme",
+		priority = 1000,
+		cond = function()
+			return require("functions").get_system_theme() == "light"
+		end,
+		config = function()
+			vim.cmd("colorscheme PaperColor")
+			vim.opt.background = "light"
 		end,
 	},
 	{
