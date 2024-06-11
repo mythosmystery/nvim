@@ -15,6 +15,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
 vim.keymap.set("n", "<leader>s", "<cmd>source %<cr>", { desc = "Re-[S]ource" })
+vim.keymap.set("n", "<leader>r", require("functions").reload_theme, { desc = "[R]eload Theme" })
 
 -- Plugins sub-menu
 vim.keymap.set("n", "<leader>Pi", "<cmd>Lazy install<cr>", { desc = "[I]nstall" })

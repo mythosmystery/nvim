@@ -6,6 +6,19 @@ return {
 			use_lsp_features = true,
 		},
 	},
+	-- {
+	-- 	"olical/conjure",
+	-- },
+	{
+		"S1M0N38/love2d.nvim",
+		cmd = "LoveRun",
+		opts = {},
+		keys = {
+			{ "<leader>v", ft = "lua", desc = "LÖVE" },
+			{ "<leader>vv", "<cmd>LoveRun<cr>", ft = "lua", desc = "Run LÖVE" },
+			{ "<leader>vs", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
+		},
+	},
 	{
 		"stevearc/conform.nvim",
 		opts = {
@@ -20,9 +33,10 @@ return {
 				typescript = { { "eslint_d", "prettier" } },
 				typescriptreact = { { "eslint_d", "prettier" } },
 				vue = { { "eslint_d", "prettier" } },
-				svelte = { { "eslint_d", "prettier" } },
 				go = { "gofmt", "goimports" },
 				ocaml = { "ocamlformat" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 			},
 		},
 	},
@@ -69,6 +83,13 @@ return {
 				dockerls = {},
 				docker_compose_language_service = {},
 				zls = {},
+				ocamllsp = {},
+				clojure_lsp = {},
+				angularls = {
+					filetypes = { "typescript", "angular.html" },
+				},
+				rescriptls = {},
+				jdtls = {},
 			}
 
 			require("neodev").setup()
@@ -122,6 +143,7 @@ return {
 					)
 
 					vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "[R]estart LSP" })
+					vim.keymap.set("n", "<leader>cF", vim.lsp.buf.format, { desc = "[F]ormat" })
 					vim.keymap.set("n", "cR", vim.lsp.buf.rename, { desc = "[R]ename" })
 
 					vim.keymap.set("n", "gd", function()
