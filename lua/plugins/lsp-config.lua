@@ -82,13 +82,9 @@ return {
 				eslint = {},
 				dockerls = {},
 				docker_compose_language_service = {},
-				zls = {},
-				ocamllsp = {},
-				clojure_lsp = {},
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
 				},
-				rescriptls = {},
 				jdtls = {},
 			}
 

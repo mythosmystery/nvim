@@ -62,28 +62,28 @@ return {
 		"brenoprata10/nvim-highlight-colors",
 		opts = {},
 	},
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		cond = vim.g.neovide ~= nil,
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-		config = function()
-			require("noice").setup({
-				lsp = {
-					progress = {
-						enabled = false,
-					},
-				},
-				routes = {
-					{
-						view = "notify",
-						filter = { event = "msg_showmode" },
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	event = "VeryLazy",
+	-- 	cond = vim.g.neovide ~= nil,
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"rcarriga/nvim-notify",
+	-- 	},
+	-- 	config = function()
+	-- 		require("noice").setup({
+	-- 			lsp = {
+	-- 				progress = {
+	-- 					enabled = false,
+	-- 				},
+	-- 			},
+	-- 			routes = {
+	-- 				{
+	-- 					view = "notify",
+	-- 					filter = { event = "msg_showmode" },
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 }
