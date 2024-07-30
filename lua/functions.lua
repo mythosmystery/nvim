@@ -25,28 +25,4 @@ M.get_visual_selection = function()
 	end
 end
 
-M.get_system_theme = function()
-	--  local out = os.execute("defaults read -g AppleInterfaceStyle 2>/dev/null")
-	--  local is_dark = out == 0
-	--
-	-- if is_dark then
-	-- 	return "dark"
-	-- else
-	-- 	return "light"
-	-- end
-	return "dark"
-end
-
-M.reload_theme = function()
-	vim.cmd("Lazy reload lualine.nvim")
-	local theme = M.get_system_theme()
-	if theme == "dark" then
-		vim.cmd("colorscheme tokyonight")
-		vim.opt.background = "dark"
-	else
-		vim.cmd("colorscheme PaperColor")
-		vim.opt.background = "light"
-	end
-end
-
 return M

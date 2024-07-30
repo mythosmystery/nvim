@@ -1,15 +1,5 @@
 return {
 	{
-		"LhKipp/nvim-nu",
-		ft = "nu",
-		opts = {
-			use_lsp_features = true,
-		},
-	},
-	-- {
-	-- 	"olical/conjure",
-	-- },
-	{
 		"S1M0N38/love2d.nvim",
 		cmd = "LoveRun",
 		opts = {},
@@ -32,9 +22,7 @@ return {
 				javascript = { { "eslint_d", "prettier" } },
 				typescript = { { "eslint_d", "prettier" } },
 				typescriptreact = { { "eslint_d", "prettier" } },
-				vue = { { "eslint_d", "prettier" } },
 				go = { "gofmt", "goimports" },
-				ocaml = { "ocamlformat" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 			},
@@ -70,8 +58,6 @@ return {
 				},
 				clangd = {},
 				gopls = {},
-				elixirls = {},
-				vuels = {},
 				pyright = {},
 				cssls = {},
 				html = {},
@@ -80,8 +66,6 @@ return {
 				templ = {},
 				lua_ls = {},
 				eslint = {},
-				dockerls = {},
-				docker_compose_language_service = {},
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
 				},

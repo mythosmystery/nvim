@@ -16,19 +16,4 @@ return {
 			current_line_blame = true,
 		},
 	},
-	{
-		"pwntester/octo.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("octo").setup()
-			vim.keymap.set("n", "<leader>goi", "<cmd>Octo issue list<cr>", { desc = "[I]ssue List" })
-			vim.keymap.set("n", "<leader>goI", "<cmd>Octo issue create<cr>", { desc = "[I]ssue Create" })
-			vim.keymap.set("n", "<leader>gop", "<cmd>Octo pr list<cr>", { desc = "[P]R List" })
-			vim.keymap.set("n", "<leader>goP", "<cmd>Octo pr create<cr>", { desc = "[P]R Create" })
-		end,
-	},
 }
