@@ -19,6 +19,16 @@ return {
 			{ "<leader>vs", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
 		},
 	},
+	-- {
+	-- 	"mfussenegger/nvim-jdtls",
+	-- 	ft = "java",
+	-- 	config = function()
+	-- 		local config = {
+	-- 			root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
+	-- 		}
+	-- 		require("jdtls").start_or_attach(config)
+	-- 	end,
+	-- },
 	{
 		"stevearc/conform.nvim",
 		opts = {
@@ -64,6 +74,11 @@ return {
 							},
 							check = {
 								command = "clippy",
+								features = "all",
+							},
+							diagnostics = {
+								enable = true,
+								enableExperimental = true,
 							},
 						},
 					},
@@ -80,15 +95,11 @@ return {
 				templ = {},
 				lua_ls = {},
 				eslint = {},
-				dockerls = {},
-				docker_compose_language_service = {},
-				zls = {},
 				ocamllsp = {},
 				clojure_lsp = {},
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
 				},
-				rescriptls = {},
 				jdtls = {},
 			}
 
@@ -118,6 +129,10 @@ return {
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},
+			})
+
+			require("lspconfig").gleam.setup({
+				capabilities = capabilities,
 			})
 
 			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})

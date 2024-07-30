@@ -44,3 +44,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.component.html",
 	command = "set filetype=angular.html",
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = vim.api.nvim_create_augroup("set-filetype-premake", { clear = true }),
+	pattern = "premake*.lua",
+	command = "set filetype=premake",
+})
