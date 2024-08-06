@@ -19,7 +19,7 @@ return {
 		"leath-dub/snipe.nvim",
 		keys = {
 			{
-				"gs",
+				"<leader>s",
 				function()
 					require("snipe").open_buffer_menu()
 				end,

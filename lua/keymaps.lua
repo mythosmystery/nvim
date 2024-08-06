@@ -10,11 +10,9 @@ vim.keymap.set("n", "<C-p>", ":bprev<CR>", opts)
 vim.keymap.set("n", "<C-n>", ":bnext<CR>", opts)
 vim.keymap.set({ "n", "v", "i" }, "<C-c>", "<ESC>", opts)
 
-vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Open File tr[e]e" })
 vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
-vim.keymap.set("n", "<leader>s", "<cmd>source %<cr>", { desc = "Re-[S]ource" })
 
 -- Plugins sub-menu
 vim.keymap.set("n", "<leader>Pi", "<cmd>Lazy install<cr>", { desc = "[I]nstall" })

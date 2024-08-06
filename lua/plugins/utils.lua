@@ -1,5 +1,4 @@
 return {
-	{ "numToStr/Comment.nvim", opts = {} },
 	{ "nanotee/zoxide.vim", dependencies = {
 		"junegunn/fzf",
 	} },
@@ -23,13 +22,15 @@ return {
 
 			require("mini.bufremove").setup()
 
+			require("mini.comment").setup()
+
+			require("mini.pairs").setup()
+
+			require("mini.files").setup()
+
 			vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, { desc = "Delete Buffer" })
+			vim.keymap.set("n", "<leader>e", require("mini.files").open, { desc = "Open File Browser" })
 		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
 	},
 	{
 		"folke/todo-comments.nvim",
