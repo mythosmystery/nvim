@@ -30,15 +30,6 @@ vim.api.nvim_create_autocmd("QuitPre", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("VimEnter", {
-	group = vim.api.nvim_create_augroup("nvim-tree-open", { clear = true }),
-	callback = function()
-		if vim.g.neovide then
-			vim.cmd("NvimTreeOpen")
-		end
-	end,
-})
-
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("set-filetype-angular", { clear = true }),
 	pattern = "*.component.html",

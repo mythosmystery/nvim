@@ -1,15 +1,5 @@
 return {
 	{
-		"LhKipp/nvim-nu",
-		ft = "nu",
-		opts = {
-			use_lsp_features = true,
-		},
-	},
-	-- {
-	-- 	"olical/conjure",
-	-- },
-	{
 		"S1M0N38/love2d.nvim",
 		cmd = "LoveRun",
 		opts = {},
@@ -19,16 +9,6 @@ return {
 			{ "<leader>vs", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
 		},
 	},
-	-- {
-	-- 	"mfussenegger/nvim-jdtls",
-	-- 	ft = "java",
-	-- 	config = function()
-	-- 		local config = {
-	-- 			root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
-	-- 		}
-	-- 		require("jdtls").start_or_attach(config)
-	-- 	end,
-	-- },
 	{
 		"stevearc/conform.nvim",
 		opts = {
@@ -42,9 +22,7 @@ return {
 				javascript = { { "eslint_d", "prettier" } },
 				typescript = { { "eslint_d", "prettier" } },
 				typescriptreact = { { "eslint_d", "prettier" } },
-				vue = { { "eslint_d", "prettier" } },
 				go = { "gofmt", "goimports" },
-				ocaml = { "ocamlformat" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 			},
@@ -85,8 +63,6 @@ return {
 				},
 				clangd = {},
 				gopls = {},
-				elixirls = {},
-				vuels = {},
 				pyright = {},
 				cssls = {},
 				html = {},
@@ -95,12 +71,11 @@ return {
 				templ = {},
 				lua_ls = {},
 				eslint = {},
-				ocamllsp = {},
-				clojure_lsp = {},
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
 				},
-				jdtls = {},
+				omnisharp = {},
+
 			}
 
 			require("neodev").setup()
@@ -115,6 +90,7 @@ return {
 				"eslint_d",
 				"prettier",
 				"stylua",
+				"jdtls",
 			})
 
 			require("mason-tool-installer").setup({
@@ -124,6 +100,10 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
+						if server_name == "jdtls" then
+							return
+						end
+
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
