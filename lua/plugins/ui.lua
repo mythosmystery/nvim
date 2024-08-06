@@ -9,21 +9,11 @@ return {
 		},
 	},
 	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		cmd = { "NvimTreeToggle", "NvimTreeOpen" },
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		opts = {
-			sync_root_with_cwd = true,
-			diagnostics = {
-				enable = true,
-			},
-			renderer = {
-				highlight_diagnostics = true,
-			},
-		},
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("oil").setup()
+		end,
 	},
 	{
 		"folke/tokyonight.nvim",

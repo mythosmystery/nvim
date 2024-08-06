@@ -69,7 +69,7 @@ return {
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
 				},
-				jdtls = {},
+				omnisharp = {},
 			}
 
 			require("neodev").setup()
@@ -84,6 +84,7 @@ return {
 				"eslint_d",
 				"prettier",
 				"stylua",
+				"jdtls",
 			})
 
 			require("mason-tool-installer").setup({
@@ -93,6 +94,10 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
+						if server_name == "jdtls" then
+							return
+						end
+
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
