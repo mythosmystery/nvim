@@ -2,19 +2,8 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			-- options = {
-			-- 	theme = "tokyonight",
-			-- },
-		},
+		opts = {},
 	},
-	-- {
-	-- 	"stevearc/oil.nvim",
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- 	config = function()
-	-- 		require("oil").setup()
-	-- 	end,
-	-- },
 	{
 		"folke/tokyonight.nvim",
 		name = "tokyonight",
