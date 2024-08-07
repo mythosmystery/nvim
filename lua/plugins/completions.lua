@@ -15,8 +15,6 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lua",
-			"zbirenbaum/copilot-cmp",
-			"zbirenbaum/copilot.lua",
 			{
 				"L3MON4D3/LuaSnip",
 				dependencies = {

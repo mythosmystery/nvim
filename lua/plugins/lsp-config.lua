@@ -52,6 +52,11 @@ return {
 							},
 							check = {
 								command = "clippy",
+								features = "all",
+							},
+							diagnostics = {
+								enable = true,
+								enableExperimental = true,
 							},
 						},
 					},
@@ -70,6 +75,7 @@ return {
 					filetypes = { "typescript", "angular.html" },
 				},
 				omnisharp = {},
+
 			}
 
 			require("neodev").setup()
@@ -103,6 +109,10 @@ return {
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},
+			})
+
+			require("lspconfig").gleam.setup({
+				capabilities = capabilities,
 			})
 
 			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
