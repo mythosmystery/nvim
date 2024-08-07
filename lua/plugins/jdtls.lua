@@ -216,16 +216,17 @@ return {
 					referencesCodeLens = {
 						enabled = true,
 					},
-					-- inlayHints = {
-					--   parameterNames = {
-					--     enabled = 'all' -- literals, all, none
-					--   }
-					-- },
+					inlayHints = {
+						parameterNames = {
+							enabled = "all", -- literals, all, none
+						},
+					},
 					format = {
 						enabled = true,
-						-- settings = {
-						--   profile = 'asdf'
-						-- },
+						settings = {
+							url = vim.fn.expand("$HOME/RMS2.xml"),
+							profile = "RMS2",
+						},
 					},
 				},
 				signatureHelp = {

@@ -75,7 +75,6 @@ return {
 					filetypes = { "typescript", "angular.html" },
 				},
 				omnisharp = {},
-
 			}
 
 			require("neodev").setup()
