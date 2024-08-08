@@ -136,12 +136,12 @@ return {
 			-- https://github.com/mfussenegger/nvim-jdtls#usage
 
 			local opts = { buffer = bufnr }
-			vim.keymap.set("n", "<A-o>", "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
-			vim.keymap.set("n", "crv", "<cmd>lua require('jdtls').extract_variable()<cr>", opts)
-			vim.keymap.set("x", "crv", "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", opts)
-			vim.keymap.set("n", "crc", "<cmd>lua require('jdtls').extract_constant()<cr>", opts)
-			vim.keymap.set("x", "crc", "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", opts)
-			vim.keymap.set("x", "crm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
+			vim.keymap.set("n", "<A-o>", require("jdtls").organize_imports, opts)
+			vim.keymap.set("n", "crv", require("jdtls").extract_variable, opts)
+			vim.keymap.set("x", "crv", require("jdtls").extract_variable, opts)
+			vim.keymap.set("n", "crc", require("jdtls").extract_constant, opts)
+			vim.keymap.set("x", "crc", require("jdtls").extract_constant, opts)
+			vim.keymap.set("x", "crm", require("jdtls").extract_method, opts)
 		end
 
 		local function jdtls_setup(event)
@@ -164,7 +164,6 @@ return {
 			-- The command that starts the language server
 			-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 			local cmd = {
-				-- 💀
 				"java",
 
 				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -180,26 +179,18 @@ return {
 				"--add-opens",
 				"java.base/java.lang=ALL-UNNAMED",
 
-				-- 💀
 				"-jar",
 				path.launcher_jar,
 
-				-- 💀
 				"-configuration",
 				path.platform_config,
 
-				-- 💀
 				"-data",
 				data_dir,
 			}
 
 			local lsp_settings = {
 				java = {
-					-- jdt = {
-					--   ls = {
-					--     vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
-					--   }
-					-- },
 					eclipse = {
 						downloadSources = true,
 					},
@@ -216,16 +207,17 @@ return {
 					referencesCodeLens = {
 						enabled = true,
 					},
-					-- inlayHints = {
-					--   parameterNames = {
-					--     enabled = 'all' -- literals, all, none
-					--   }
-					-- },
+					inlayHints = {
+						parameterNames = {
+							enabled = "all", -- literals, all, none
+						},
+					},
 					format = {
 						enabled = true,
-						-- settings = {
-						--   profile = 'asdf'
-						-- },
+						settings = {
+							url = vim.fn.expand("$HOME/RMS2.xml"),
+							profile = "RMS2",
+						},
 					},
 				},
 				signatureHelp = {

@@ -8,14 +8,14 @@ return {
 	config = function()
 		local wk = require("which-key")
 		wk.add({
-			{ "<leader>d", { group = "[D]ap" } },
-			{ "<leader>c", { group = "[C]ode" } },
-			{ "<leader>t", { group = "[T]erminal" } },
-			{ "<leader>u", { group = "[U]ndo" } },
-			{ "<leader>g", { group = "[G]it" } },
-			{ "<leader>f", { group = "[F]ind" } },
-			{ "<leader>x", { group = "[X]rouble" } },
-			{ "<leader>P", { group = "[P]lugins" } },
+			{ "<leader>d", group = "[D]ap" },
+			{ "<leader>c", group = "[C]ode" },
+			{ "<leader>t", group = "[T]erminal" },
+			{ "<leader>u", group = "[U]ndo" },
+			{ "<leader>g", group = "[G]it" },
+			{ "<leader>f", group = "[F]ind" },
+			{ "<leader>x", group = "[X]rouble" },
+			{ "<leader>P", group = "[P]lugins" },
 		})
 	end,
 }

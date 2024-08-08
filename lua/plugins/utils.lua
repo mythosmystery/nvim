@@ -26,10 +26,14 @@ return {
 
 			require("mini.pairs").setup()
 
-			require("mini.files").setup()
+			require("mini.files").setup({
+				mappings = {
+					go_in_plus = "<cr>",
+				},
+			})
 
 			vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, { desc = "Delete Buffer" })
-			vim.keymap.set("n", "<leader>e", require("mini.files").open, { desc = "Open File Browser" })
+			vim.keymap.set("n", "<leader>e", require("mini.files").open, { desc = "[E]dit Filesystem" })
 		end,
 	},
 	{
