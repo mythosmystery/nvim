@@ -36,6 +36,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer",
 			"folke/neodev.nvim",
+			"Hoffs/omnisharp-extended-lsp.nvim",
 			{
 				"j-hui/fidget.nvim",
 				opts = {},
@@ -74,7 +75,15 @@ return {
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
 				},
-				omnisharp = {},
+				omnisharp = {
+					handlers = {
+						["textDocument/definition"] = require("omnisharp_extended").handler,
+						["textDocument/typeDefinition"] = require("omnisharp_extended").handler,
+						["textDocument/references"] = require("omnisharp_extended").handler,
+						["textDocument/implementation"] = require("omnisharp_extended").handler,
+					},
+					enable_roslyn_analyzers = true,
+				},
 			}
 
 			require("neodev").setup()
@@ -140,33 +149,15 @@ return {
 					vim.keymap.set("n", "<leader>cF", vim.lsp.buf.format, { desc = "[F]ormat" })
 					vim.keymap.set("n", "cR", vim.lsp.buf.rename, { desc = "[R]ename" })
 
-					vim.keymap.set("n", "gd", function()
-						require("trouble").toggle("lsp_definitions")
-					end, { desc = "[G]oto [D]efinition" })
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
 
-					vim.keymap.set("n", "gD", function()
-						require("trouble").toggle("lsp_type_definitions")
-					end, { desc = "[G]oto Type [D]efinition" })
+					vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "[G]oto Type [D]efinition" })
 
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation" })
 
 					vim.keymap.set("n", "gr", function()
 						require("trouble").toggle("lsp_references")
 					end, { desc = "[G]oto [R]eferences" })
-
-					vim.keymap.set(
-						"n",
-						"gds",
-						require("telescope.builtin").lsp_document_symbols,
-						{ desc = "[G]oto [D]ocument [S]ymbols" }
-					)
-
-					vim.keymap.set(
-						"n",
-						"gws",
-						require("telescope.builtin").lsp_workspace_symbols,
-						{ desc = "[G]oto [W]orkspace [S]ymbols" }
-					)
 
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 				end,
