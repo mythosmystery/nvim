@@ -24,7 +24,8 @@ return {
 
 		dap.adapters.lldb = {
 			type = "executable",
-			command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
+			-- command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
+			command = "/home/linuxbrew/.linuxbrew/bin/lldb-dap",
 			name = "lldb",
 		}
 
@@ -91,7 +92,7 @@ return {
 					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 				end,
 				cwd = "${workspaceFolder}",
-				stopOnEntry = false,
+				stopOnEntry = true,
 			},
 		}
 
