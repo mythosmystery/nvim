@@ -84,6 +84,7 @@ return {
 					},
 					enable_roslyn_analyzers = true,
 				},
+				clojure_lsp = {},
 			}
 
 			require("neodev").setup()
