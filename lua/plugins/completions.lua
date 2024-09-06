@@ -1,11 +1,5 @@
 return {
 	{
-		"David-Kunz/gen.nvim",
-		opts = {
-			model = "gemma:7b",
-		},
-	},
-	{
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
@@ -15,6 +9,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lua",
+			"PaterJason/cmp-conjure",
 			{
 				"L3MON4D3/LuaSnip",
 				dependencies = {
@@ -95,6 +90,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "nvim_lua" },
+					{ name = "conjure" },
 				}, {
 					{ name = "buffer" },
 					{ name = "path" },
