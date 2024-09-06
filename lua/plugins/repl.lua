@@ -1,9 +1,14 @@
 return {
-	{ "olical/conjure" },
 	{
-		"clojure-vim/vim-jack-in",
+		"olical/conjure",
 		dependencies = {
-			"tpope/vim-dispatch",
+			"clojure-vim/vim-jack-in",
+			dependencies = {
+				"tpope/vim-dispatch",
+			},
 		},
+		config = function()
+			vim.g["conjure#mapping#doc_word"] = "gk"
+		end,
 	},
 }
