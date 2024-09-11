@@ -11,4 +11,9 @@ return {
 			vim.g["conjure#mapping#doc_word"] = "gk"
 		end,
 	},
+	{
+		"dundalek/parpar.nvim",
+		dependencies = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
+		opts = {},
+	},
 }
