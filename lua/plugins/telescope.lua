@@ -27,6 +27,7 @@ return {
 						i = { ["<c-t>"] = trouble.open },
 						n = { ["<c-t>"] = trouble.open },
 					},
+					path_display = { "smart" },
 				},
 				pickers = {
 					buffers = {

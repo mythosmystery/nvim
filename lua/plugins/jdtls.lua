@@ -213,7 +213,7 @@ return {
 						},
 					},
 					format = {
-						enabled = true,
+						enabled = false,
 						settings = {
 							url = vim.fn.expand("$HOME/RMS2.xml"),
 							profile = "RMS2",
