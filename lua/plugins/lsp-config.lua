@@ -12,19 +12,16 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {
-			notify_on_error = false,
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
+			notify_on_error = true,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "eslint_d", "prettier" } },
-				typescript = { { "eslint_d", "prettier" } },
-				typescriptreact = { { "eslint_d", "prettier" } },
+				javascript = { "eslint_d" },
+				typescript = { "prettier", "eslint_d" },
+				typescriptreact = { "prettier", "eslint_d" },
 				go = { "gofmt", "goimports" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+				python = { "isort", "ruff" },
 			},
 		},
 	},
@@ -44,7 +41,13 @@ return {
 		},
 		config = function()
 			local servers = {
-				tsserver = {},
+				ts_ls = {
+					init_options = {
+						preferences = {
+							importModuleSpecifierPreference = "relative",
+						},
+					},
+				},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {

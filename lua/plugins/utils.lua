@@ -3,7 +3,20 @@ return {
 		"junegunn/fzf",
 	} },
 	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {
+			default_file_explorer = false,
+		},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
+	},
+	{
 		"echasnovski/mini.nvim",
+		-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		config = function()
 			-- Better Around/Inside textobjects
 			--
@@ -30,6 +43,9 @@ return {
 				mappings = {
 					go_in_plus = "<cr>",
 				},
+				-- options = {
+				-- 	use_as_default_explorer = false,
+				-- },
 			})
 
 			vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, { desc = "Delete Buffer" })
