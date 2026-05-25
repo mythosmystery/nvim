@@ -1,50 +1,57 @@
+-- nvim-treesitter v1 (main branch) for Neovim 0.12+
+-- Highlighting is built into Neovim; this plugin manages parsers/queries.
+-- treesitter-context adds sticky scope lines at the top of the window.
+
+local parsers = {
+	"bash",
+	"clojure",
+	"css",
+	"go",
+	"html",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"regex",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"vimdoc",
+	"xml",
+	"yaml",
+}
+
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
 			"nvim-treesitter/nvim-treesitter-context",
 		},
-		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
-				autotag = {
-					enable = true,
-					filetypes = { "html", "svelte", "vue", "jsx", "tsx" },
-				},
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["aC"] = "@comment.outer",
-							["iC"] = "@comment.inner",
-							["ai"] = "@conditional.outer",
-							["ii"] = "@conditional.inner",
-							["al"] = "@loop.outer",
-							["il"] = "@loop.inner",
-							["ab"] = "@block.outer",
-							["ib"] = "@block.inner",
-						},
-					},
-				},
+			require("nvim-treesitter").setup()
+
+			-- No-op when parsers are already installed; :TSUpdate in build keeps them current
+			require("nvim-treesitter").install(parsers)
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("treesitter-highlight", { clear = true }),
+				callback = function(args)
+					pcall(vim.treesitter.start, args.buf)
+				end,
 			})
+
 			vim.treesitter.language.register("markdown", { "octo" })
 
-			-- Disable treesitter-context for markdown: injected child parsers
-			-- crash when the injected language is invalid/missing.
-			-- This is a known Neovim 0.12 issue with the injection query system.
 			require("treesitter-context").setup({
 				enable = true,
 				on_attach = function(bufnr)
 					local ft = vim.bo[bufnr].filetype
+					-- Disable for markdown/mdx (injection crash in nvim 0.12)
 					return ft ~= "markdown" and ft ~= "mdx"
 				end,
 			})

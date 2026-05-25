@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Disable netrw; neo-tree handles directory opens
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -22,7 +26,9 @@ vim.opt.hlsearch = true
 vim.opt.showmode = false
 vim.opt.wrap = false
 
-vim.filetype.add({ extension = { templ = "templ" } })
-
-vim.g.neovide_cursor_vfx_mode = "railgun"
-vim.o.guifont = "MesloLGS NF:h14"
+-- Treesitter folding (available on demand; foldlevel=99 keeps everything open)
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99

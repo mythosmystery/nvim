@@ -14,8 +14,8 @@ vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
 
-vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "[O]il" })
-vim.keymap.set("n", "<leader>ap", require("pi_nvim").toggle, { desc = "Toggle [P]i" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "[E]xplorer" })
+vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<cr>", { desc = "[A]erial" })
 
 -- Plugins sub-menu
 vim.keymap.set("n", "<leader>Pi", "<cmd>Lazy install<cr>", { desc = "[I]nstall" })
@@ -28,9 +28,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 vim.keymap.set("i", "<C-z>", "<C-o>u", opts)
--- vim.keymap.set("i", "<C-h>", "<C-o>h", opts)
 vim.keymap.set("i", "<C-j>", "<C-o>j", opts)
 vim.keymap.set("i", "<C-k>", "<C-o>k", opts)
--- vim.keymap.set("i", "<C-l>", "<C-o>l", opts)
 vim.keymap.set("i", "<C-u>", "<C-o><C-u>", opts)
 vim.keymap.set("i", "<C-d>", "<C-o><C-d>", opts)

@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		-- branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{
@@ -49,12 +48,10 @@ return {
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
 			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-			vim.keymap.set("n", "<leader>fs", builtin.builtin, { desc = "[F]ind [S]elect Telescope" })
 			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
 			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "[F]ind [R]ecent Files" })
-			vim.keymap.set("n", "<leader>fb", builtin.git_branches, { desc = "[F]ind [B]ranches" })
 			vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Find existing [B]uffers" })
 			vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
 			vim.keymap.set("n", "<leader>ft", function()
@@ -66,15 +63,12 @@ return {
 			end, { desc = "[S]earch Visual Selection" })
 
 			vim.keymap.set("n", "<leader>/", function()
-				-- You can pass additional configuration to telescope to change theme, layout, etc.
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 					winblend = 10,
 					previewer = false,
 				}))
 			end, { desc = "[/] Fuzzily search in current buffer" })
 
-			-- Also possible to pass additional configuration options.
-			--  See `:help telescope.builtin.live_grep()` for information about particular keys
 			vim.keymap.set("n", "<leader>f/", function()
 				builtin.live_grep({
 					grep_open_files = true,
@@ -82,7 +76,6 @@ return {
 				})
 			end, { desc = "[F]ind [/] in Open Files" })
 
-			-- Shortcut for searching your neovim configuration files
 			vim.keymap.set("n", "<leader>fc", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
 			end, { desc = "[F]ind Neovim [C]onfig" })
