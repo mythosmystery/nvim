@@ -7,8 +7,7 @@ return {
 		},
 		build = ":TSUpdate",
 		config = function()
-			local config = require("nvim-treesitter.configs")
-			config.setup({
+			require("nvim-treesitter.configs").setup({
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -37,7 +36,18 @@ return {
 					},
 				},
 			})
-			vim.treesitter.language.register("markdown", "octo")
+			vim.treesitter.language.register("markdown", { "octo" })
+
+			-- Disable treesitter-context for markdown: injected child parsers
+			-- crash when the injected language is invalid/missing.
+			-- This is a known Neovim 0.12 issue with the injection query system.
+			require("treesitter-context").setup({
+				enable = true,
+				on_attach = function(bufnr)
+					local ft = vim.bo[bufnr].filetype
+					return ft ~= "markdown" and ft ~= "mdx"
+				end,
+			})
 		end,
 	},
 }

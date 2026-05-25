@@ -15,6 +15,7 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
 
 vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "[O]il" })
+vim.keymap.set("n", "<leader>ap", require("pi_nvim").toggle, { desc = "Toggle [P]i" })
 
 -- Plugins sub-menu
 vim.keymap.set("n", "<leader>Pi", "<cmd>Lazy install<cr>", { desc = "[I]nstall" })

@@ -32,7 +32,6 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer",
-			"folke/neodev.nvim",
 			"Hoffs/omnisharp-extended-lsp.nvim",
 			{
 				"j-hui/fidget.nvim",
@@ -40,6 +39,11 @@ return {
 			},
 		},
 		config = function()
+			-- Build shared capabilities
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+			-- Server configurations
 			local servers = {
 				ts_ls = {
 					init_options = {
@@ -51,17 +55,9 @@ return {
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
-							inlayHints = {
-								auto = true,
-							},
-							check = {
-								command = "clippy",
-								features = "all",
-							},
-							diagnostics = {
-								enable = true,
-								enableExperimental = true,
-							},
+							inlayHints = { auto = true },
+							check = { command = "clippy", features = "all" },
+							diagnostics = { enable = true, enableExperimental = true },
 						},
 					},
 				},
@@ -73,7 +69,14 @@ return {
 				tailwindcss = {},
 				svelte = {},
 				templ = {},
-				lua_ls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = { globals = { "vim" } },
+							workspace = { library = { vim.fn.stdpath("config") } },
+						},
+					},
+				},
 				eslint = {},
 				angularls = {
 					filetypes = { "typescript", "angular.html" },
@@ -90,46 +93,29 @@ return {
 				clojure_lsp = {},
 			}
 
-			require("neodev").setup()
-
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
+			-- Mason setup
 			require("mason").setup()
 
+			-- Install LSP servers + tools via Mason
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"eslint_d",
-				"prettier",
-				"stylua",
-				"jdtls",
+				"eslint_d", "prettier", "stylua", "jdtls",
 			})
 
 			require("mason-tool-installer").setup({
 				ensure_installed = ensure_installed,
 			})
 
-			require("mason-lspconfig").setup({
-				handlers = {
-					function(server_name)
-						if server_name == "jdtls" then
-							return
-						end
+			-- Auto-start LSP servers via vim.lsp.config (new API - no deprecation warnings)
+			for server_name, config in pairs(servers) do
+				vim.lsp.config(server_name, vim.tbl_deep_extend("force", {
+					capabilities = capabilities,
+				}, config))
+			end
 
-						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
-			})
-
-			require("lspconfig").gleam.setup({
-				capabilities = capabilities,
-			})
-
-			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+			-- LspAttach: set up keymaps and inlay hints
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = "LspAttach_inlayhints",
+				group = vim.api.nvim_create_augroup("LspAttach_keymaps", { clear = true }),
 				callback = function(args)
 					if not (args.data and args.data.client_id) then
 						return
@@ -139,31 +125,19 @@ return {
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					require("lsp-inlayhints").on_attach(client, bufnr)
 
-					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions" })
-					vim.keymap.set("n", "<leader>cf", require("conform").format, { desc = "[F]ormat File" })
-
-					vim.keymap.set(
-						"n",
-						"<leader>ch",
-						require("lsp-inlayhints").toggle,
-						{ desc = "Toggle Inlay [H]ints" }
-					)
-
-					vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "[R]estart LSP" })
-					vim.keymap.set("n", "<leader>cF", vim.lsp.buf.format, { desc = "[F]ormat" })
-					vim.keymap.set("n", "cR", vim.lsp.buf.rename, { desc = "[R]ename" })
-
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
-
-					vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "[G]oto Type [D]efinition" })
-
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation" })
-
+					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions", buffer = bufnr })
+					vim.keymap.set("n", "<leader>cf", require("conform").format, { desc = "[F]ormat File", buffer = bufnr })
+					vim.keymap.set("n", "<leader>ch", require("lsp-inlayhints").toggle, { desc = "Toggle Inlay [H]ints", buffer = bufnr })
+					vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "[R]estart LSP", buffer = bufnr })
+					vim.keymap.set("n", "<leader>cF", vim.lsp.buf.format, { desc = "[F]ormat", buffer = bufnr })
+					vim.keymap.set("n", "cR", vim.lsp.buf.rename, { desc = "[R]ename", buffer = bufnr })
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition", buffer = bufnr })
+					vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "[G]oto Type [D]efinition", buffer = bufnr })
+					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation", buffer = bufnr })
 					vim.keymap.set("n", "gr", function()
 						require("trouble").toggle("lsp_references")
-					end, { desc = "[G]oto [R]eferences" })
-
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+					end, { desc = "[G]oto [R]eferences", buffer = bufnr })
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
 				end,
 			})
 		end,
