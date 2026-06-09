@@ -5,6 +5,7 @@ return {
 		opts = {
 			ensure_installed = {
 				-- LSP servers
+				"astro-language-server",
 				"typescript-language-server",
 				"pyright",
 				"gopls",
@@ -37,6 +38,7 @@ return {
 		opts = {
 			notify_on_error = true,
 			formatters_by_ft = {
+				astro = { "prettier" },
 				lua = { "stylua" },
 				javascript = { "prettier", "eslint_d" },
 				typescript = { "prettier", "eslint_d" },
@@ -73,6 +75,7 @@ return {
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+			vim.lsp.config("astro", { capabilities = capabilities })
 			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
 				init_options = {
@@ -97,6 +100,7 @@ return {
 			vim.lsp.config("eslint", { capabilities = capabilities })
 
 			vim.lsp.enable({
+				"astro",
 				"ts_ls",
 				"pyright",
 				"gopls",

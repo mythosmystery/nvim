@@ -1,4 +1,13 @@
 return {
+	-- Auto-pair brackets, quotes, etc.
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-autopairs").setup()
+		end,
+	},
+
 	{
 		"echasnovski/mini.nvim",
 		keys = {
@@ -15,7 +24,6 @@ return {
 			require("mini.surround").setup()
 			require("mini.bufremove").setup()
 			require("mini.comment").setup()
-			require("mini.pairs").setup()
 		end,
 	},
 }

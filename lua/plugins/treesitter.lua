@@ -3,6 +3,7 @@
 -- treesitter-context adds sticky scope lines at the top of the window.
 
 local parsers = {
+	"astro",
 	"bash",
 	"clojure",
 	"css",

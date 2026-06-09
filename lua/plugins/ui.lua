@@ -63,6 +63,12 @@ return {
 				},
 				filesystem = {
 					hijack_netrw_behavior = "open_default",
+					-- Watch for external file/directory changes (AI agents, other editors)
+					watch_for_changes = true,
+					-- Follow the currently edited file in the tree
+					follow_current_file = true,
+					-- Ignore hidden files in the watcher
+					filter_gitignored = false,
 				},
 				sources = { "filesystem", "buffers", "git_status" },
 				source_selector = {
