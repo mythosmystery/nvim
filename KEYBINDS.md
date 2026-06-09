@@ -4,6 +4,8 @@ Leader key: `<Space>`
 
 This document lists only keybinds explicitly defined in this config. Plugin default keymaps (e.g. mini.surround, gitsigns hunk navigation) are omitted.
 
+Base distribution: **LazyVim** with custom overrides in `lua/config/keymaps.lua` and `lua/plugins/`.
+
 ---
 
 ## General
@@ -15,7 +17,7 @@ This document lists only keybinds explicitly defined in this config. Plugin defa
 | `<leader>w` | Normal | Save all buffers (force write) | Built-in (`:wa!`) |
 | `<leader>q` | Normal | Quit current window | Built-in (`:q`) |
 | `<leader>qq` | Normal | Quit all windows | Built-in (`:qa`) |
-| `<C-x>` | Normal | Delete current buffer (keeps window open) | mini.nvim (`mini.bufremove`) |
+| `<C-x>` | Normal | Delete current buffer (keeps window open) | snacks.nvim (`Snacks.bufdelete`) |
 
 ---
 
@@ -116,6 +118,10 @@ Active in buffers with an attached LSP client.
 | `<leader>cr` | Normal | Restart LSP server | Built-in (`:LspRestart`) |
 | `]]` | Normal | Jump to next LSP reference occurrence | snacks.nvim (`snacks.words`) |
 | `[[` | Normal | Jump to previous LSP reference occurrence | snacks.nvim (`snacks.words`) |
+
+### Language support (via LazyVim extras)
+
+Enabled in `lazyvim.json`: TypeScript, Python, Go, Astro, Vue, Tailwind, JSON, Markdown, YAML, TOML, Clojure. LSP servers and formatters are installed via mason.nvim.
 
 ---
 

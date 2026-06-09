@@ -1,87 +1,155 @@
 return {
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				cond = function()
-					return vim.fn.executable("make") == 1
-				end,
-			},
-			{ "nvim-telescope/telescope-ui-select.nvim" },
-		},
-		config = function()
-			local trouble = require("trouble.sources.telescope")
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope-ui-select.nvim" },
+    },
+    opts = function(_, opts)
+      local function open_with_trouble(...)
+        return require("trouble.sources.telescope").open(...)
+      end
 
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
-				},
-				defaults = {
-					mappings = {
-						i = { ["<c-t>"] = trouble.open },
-						n = { ["<c-t>"] = trouble.open },
-					},
-					path_display = { "smart" },
-				},
-				pickers = {
-					buffers = {
-						show_all_buffers = true,
-						sort_mru = true,
-						mappings = {
-							i = {
-								["<C-d>"] = "delete_buffer",
-							},
-							n = {
-								["<C-d>"] = "delete_buffer",
-							},
-						},
-					},
-				},
-			})
+      opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown({}),
+        },
+      })
 
-			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
-			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
-			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "[F]ind [R]ecent Files" })
-			vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Find existing [B]uffers" })
-			vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
-			vim.keymap.set("n", "<leader>ft", function()
-				builtin.colorscheme({ enable_preview = true })
-			end, { desc = "[F]ind [C]olorscheme" })
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+        path_display = { "smart" },
+        mappings = vim.tbl_deep_extend("force", opts.defaults and opts.defaults.mappings or {}, {
+          i = vim.tbl_extend("force", opts.defaults and opts.defaults.mappings and opts.defaults.mappings.i or {}, {
+            ["<C-t>"] = open_with_trouble,
+          }),
+          n = vim.tbl_extend("force", opts.defaults and opts.defaults.mappings and opts.defaults.mappings.n or {}, {
+            ["<C-t>"] = open_with_trouble,
+          }),
+        }),
+      })
 
-			vim.keymap.set("v", "<leader>s", function()
-				require("telescope.builtin").grep_string({ search = require("functions").get_visual_selection() })
-			end, { desc = "[S]earch Visual Selection" })
+      opts.pickers = vim.tbl_deep_extend("force", opts.pickers or {}, {
+        buffers = {
+          show_all_buffers = true,
+          sort_mru = true,
+          mappings = {
+            i = { ["<C-d>"] = "delete_buffer" },
+            n = { ["<C-d>"] = "delete_buffer" },
+          },
+        },
+      })
 
-			vim.keymap.set("n", "<leader>/", function()
-				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-					winblend = 10,
-					previewer = false,
-				}))
-			end, { desc = "[/] Fuzzily search in current buffer" })
-
-			vim.keymap.set("n", "<leader>f/", function()
-				builtin.live_grep({
-					grep_open_files = true,
-					prompt_title = "Live Grep in Open Files",
-				})
-			end, { desc = "[F]ind [/] in Open Files" })
-
-			vim.keymap.set("n", "<leader>fc", function()
-				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[F]ind Neovim [C]onfig" })
-
-			require("telescope").load_extension("ui-select")
-			require("telescope").load_extension("fzf")
-		end,
-	},
+      return opts
+    end,
+    keys = {
+      {
+        "<leader><leader>",
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "Find files",
+      },
+      {
+        "<leader>ff",
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "[F]ind [F]iles",
+      },
+      {
+        "<leader>fc",
+        function()
+          require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+        end,
+        desc = "[F]ind neovim [C]onfig",
+      },
+      {
+        "<leader>fr",
+        function()
+          require("telescope.builtin").oldfiles()
+        end,
+        desc = "[F]ind [R]ecent files",
+      },
+      {
+        "<leader>b",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "Find [B]uffers",
+      },
+      {
+        "<leader>fg",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "[F]ind by [G]rep",
+      },
+      {
+        "<leader>fw",
+        function()
+          require("telescope.builtin").grep_string()
+        end,
+        desc = "[F]ind current [W]ord",
+      },
+      {
+        "<leader>f/",
+        function()
+          require("telescope.builtin").live_grep({
+            grep_open_files = true,
+            prompt_title = "Live Grep in Open Files",
+          })
+        end,
+        desc = "[F]ind [/] in open files",
+      },
+      {
+        "<leader>/",
+        function()
+          require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+            winblend = 10,
+            previewer = false,
+          }))
+        end,
+        desc = "[/] Fuzzy search in buffer",
+      },
+      {
+        "<leader>fh",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        desc = "[F]ind [H]elp",
+      },
+      {
+        "<leader>fk",
+        function()
+          require("telescope.builtin").keymaps()
+        end,
+        desc = "[F]ind [K]eymaps",
+      },
+      {
+        "<leader>fd",
+        function()
+          require("telescope.builtin").diagnostics()
+        end,
+        desc = "[F]ind [D]iagnostics",
+      },
+      {
+        "<leader>ft",
+        function()
+          require("telescope.builtin").colorscheme({ enable_preview = true })
+        end,
+        desc = "[F]ind colorscheme",
+      },
+      {
+        "<leader>s",
+        function()
+          require("telescope.builtin").grep_string({ search = require("functions").get_visual_selection() })
+        end,
+        mode = "v",
+        desc = "[S]earch visual selection",
+      },
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      pcall(require("telescope").load_extension, "ui-select")
+    end,
+  },
 }
