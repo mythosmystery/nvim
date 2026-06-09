@@ -3,11 +3,6 @@
 
 local opts = { noremap = true, silent = true }
 
--- Remove LazyVim defaults that conflict with KEYBINDS.md
-for _, key in ipairs({ "<C-h>", "<C-j>", "<C-k>", "<C-l>" }) do
-  pcall(vim.keymap.del, "n", key)
-end
-
 -- General
 vim.keymap.set("n", "<Esc>", ":noh<CR>", opts)
 vim.keymap.set({ "n", "v", "i" }, "<C-c>", "<Esc>", opts)
@@ -15,6 +10,12 @@ vim.keymap.set({ "n", "v", "i" }, "<C-c>", "<Esc>", opts)
 vim.keymap.set("n", "<leader>w", "<cmd>wa!<cr>", { desc = "[W]rite all" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit all" })
+
+-- Window / tmux navigation (overrides LazyVim's <C-w> mappings)
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Navigate left", silent = true })
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Navigate down", silent = true })
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Navigate up", silent = true })
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate right", silent = true })
 
 -- Buffer navigation
 vim.keymap.set("n", "<C-p>", ":bprev<CR>", opts)
@@ -60,7 +61,8 @@ vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>", { desc = "Git [B]lame" }
 vim.keymap.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Git [L]og" })
 
 -- which-key groups
-vim.api.nvim_create_autocmd("VeryLazy", {
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
   once = true,
   callback = function()
     local wk = require("which-key")
