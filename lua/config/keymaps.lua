@@ -86,8 +86,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", keys, fn, { buffer = bufnr, desc = desc, silent = true })
     end
 
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-
     map("K", vim.lsp.buf.hover, "Hover documentation")
     map("gd", vim.lsp.buf.definition, "Goto definition")
     map("gD", vim.lsp.buf.type_definition, "Goto type definition")

@@ -15,3 +15,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.wrap = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- Use conform (prettier -> eslint_d) instead of eslint LSP for formatting
+vim.g.lazyvim_eslint_auto_format = false
